@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 820" preserveAspectRatio="none">
+  <defs>
+    <!-- manchas de acuarela claras y oscuras -->
+    <filter id="clouds" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.007 0.011" numOctaves="4" seed="4" />
+      <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  2.4 0 0 0 -1.2" />
+    </filter>
+    <filter id="shade" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.009 0.006" numOctaves="4" seed="11" />
+      <feColorMatrix values="0 0 0 0 .3  0 0 0 0 0  0 0 0 0 .12  2.4 0 0 0 -1.15" />
+    </filter>
+    <!-- escarcha: puntitos blancos de brillo -->
+    <filter id="specks" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="9" />
+      <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  14 0 0 0 -8.4" />
+    </filter>
+    <filter id="specks-sparse" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="1" seed="23" />
+      <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  18 0 0 0 -12.6" />
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14" /></filter>
+    <filter id="haze" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22" /></filter>
+
+    <!-- las estelas se desvanecen hacia el centro de la tarjeta -->
+    <linearGradient id="to-right"><stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset=".55" stop-color="#fff" /></linearGradient>
+    <linearGradient id="to-left"><stop offset=".35" stop-color="#fff" /><stop offset="1" stop-color="#fff" stop-opacity="0" /></linearGradient>
+
+    <g id="trails" fill="none" stroke-linecap="round">
+      <path d="M140 262C220 228 320 160 455 124" stroke="url(#to-right)" stroke-width="34" />
+      <path d="M-30 278C20 262 64 290 92 350" stroke="url(#to-left)" stroke-width="58" />
+      <path d="M290 398C340 374 390 352 455 340" stroke="url(#to-right)" stroke-width="28" />
+      <path d="M300 520C350 494 400 478 455 474" stroke="url(#to-right)" stroke-width="22" />
+      <path d="M-25 600C20 590 50 600 70 626" stroke="url(#to-left)" stroke-width="26" />
+    </g>
+    <mask id="trail-mask"><use href="#trails" filter="url(#soft)" /></mask>
+  </defs>
+
+  <rect width="430" height="820" filter="url(#clouds)" opacity=".28" />
+  <rect width="430" height="820" filter="url(#shade)" opacity=".5" />
+  <use href="#trails" filter="url(#haze)" opacity=".28" />
+  <rect width="430" height="820" filter="url(#specks)" mask="url(#trail-mask)" />
+  <rect width="430" height="820" filter="url(#specks-sparse)" opacity=".55" />
+</svg>

@@ -115,10 +115,11 @@ h3 { margin: 0; color: var(--berry); font-family: "Playfair Display", Georgia, s
 .disco--side-l { --s: 120px; top: 10px; left: -40px; }
 .disco--side-r { --s: 130px; --spin: 12s; bottom: 10px; right: -45px; }
 /* bola que cuelga arriba al centro, con su hilo */
-/* tres bolas iguales colgando arriba; la del centro cuelga más abajo */
-.opener__balls { display: flex; justify-content: center; align-items: flex-start; gap: 4cqw; margin-bottom: 4cqw; }
-.disco--top { --s: 24cqw; --hang: 12cqw; --spin: 12s; position: relative; flex: none; margin-top: var(--hang); }
-.disco--top:nth-child(2) { --hang: 22cqw; --spin: 14s; }
+/* tres bolas grandes colgando arriba, un poco encimadas; la del centro cuelga más abajo y va adelante */
+.opener__balls { display: flex; justify-content: center; align-items: flex-start; gap: 0; margin-bottom: 3cqw; }
+.disco--top { --s: 40cqw; --hang: 10cqw; --spin: 12s; position: relative; flex: none; margin-top: var(--hang); }
+.disco--top + .disco--top { margin-left: -10cqw; }
+.disco--top:nth-child(2) { --hang: 22cqw; --spin: 14s; z-index: 2; }
 .disco--top:nth-child(3) { --spin: 10s; }
 .disco--top::before { content: ""; position: absolute; bottom: 100%; left: 50%; width: 2px; height: var(--hang); background: linear-gradient(#d9d9e0, #9c9ca8); transform: translateX(-50%); }
 
@@ -251,6 +252,14 @@ h3 { margin: 0; color: var(--berry); font-family: "Playfair Display", Georgia, s
 .details__item--place { grid-column: 1 / -1; }
 .details strong { display: block; color: var(--berry); font-family: "Playfair Display", Georgia, serif; font-size: clamp(1.25rem, 5vw, 1.5rem); line-height: 1.2; white-space: nowrap; }
 .details span { display: block; margin-top: .25rem; color: var(--ink); font-size: .85rem; line-height: 1.45; }
+/* ---------- Código de vestimenta ---------- */
+.dresscode__title { margin-bottom: .8rem; font-size: clamp(2.4rem, 10vw, 3.2rem); letter-spacing: .14em; text-transform: uppercase; }
+.dresscode__defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.dresscode { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin: 0; padding: 0; list-style: none; }
+.dresscode li { display: flex; flex-direction: column; align-items: center; }
+.dresscode__icon { width: min(88px, 22vw); height: auto; margin-bottom: .6rem; overflow: visible; filter: drop-shadow(0 4px 8px rgba(185, 79, 120, .2)); }
+.dresscode strong { color: var(--berry); font-family: "Playfair Display", Georgia, serif; font-size: clamp(1.25rem, 5vw, 1.5rem); line-height: 1.2; }
+.dresscode span { margin-top: .2rem; color: var(--ink); font-size: .8rem; line-height: 1.35; }
 .dress-note { margin: 1.1rem 0 0; padding: .75rem 1rem; color: var(--berry); background: var(--blush); border: 1.5px dashed var(--rose); border-radius: 14px; font-size: .9rem; font-weight: 600; line-height: 1.4; }
 .dress-note b { color: var(--hot); }
 

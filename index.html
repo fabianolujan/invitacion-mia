@@ -53,8 +53,12 @@
       <!-- PORTADA: collage "Happy Birthday" con Mia de pequeña + tarjeta "Let's Party!" -->
       <section class="hero" aria-labelledby="titulo-principal">
         <div class="opener">
-          <div class="disco disco--top" aria-hidden="true"><img src="disco.png" alt="" /></div>
-          <h1 id="titulo-principal" class="opener__title reveal-now"><span>Mis Quince</span><span>Mia</span></h1>
+          <div class="opener__balls" aria-hidden="true">
+            <div class="disco disco--top"><img src="disco.png" alt="" /></div>
+            <div class="disco disco--top"><img src="disco.png" alt="" /></div>
+            <div class="disco disco--top"><img src="disco.png" alt="" /></div>
+          </div>
+          <h1 id="titulo-principal" class="opener__title reveal-now"><span>Mis XV</span><span>Mia</span></h1>
 
         <div class="collage reveal-now">
           <!-- las medidas (--x, --y, --w) están en unidades del collage: 560 de ancho × 640 de alto -->
@@ -125,7 +129,6 @@
             <span class="opener__day"><small>Nov</small><b>07</b></span>
             <span>07:00 PM</span>
           </p>
-          <p class="opener__place reveal-now" data-venue>Salón de recepción</p>
 
           <div class="countdown reveal-now" aria-live="polite">
             <p>Faltan solo</p>
@@ -183,7 +186,7 @@
             <div>
               <small>Mis padrinos</small>
               <p>Elva Robles</p>
-              <p>Manuel Quintero</p>
+              <p>Jorge Carbonel Vicente</p>
             </div>
           </div>
 
@@ -206,6 +209,8 @@
               <span data-address>Dirección por confirmar</span>
             </div>
           </div>
+
+          <p class="dress-note">💗 El color <b>rosa</b> está reservado para la quinceañera</p>
         </article>
       </section>
 
@@ -243,18 +248,27 @@
         <div class="wishlist__sheet reveal">
           <p class="eyebrow">Ideas de regalo</p>
           <ul class="gifts">
-            <li><span>🌸</span>Perfumes y body mists</li>
+            <li><span>✉️</span>Lluvia de sobres <button class="yape-btn" id="yape-open" type="button" aria-haspopup="dialog">Yape QR</button></li>
             <li><span>💄</span>Maquillaje y skincare</li>
             <li><span>💍</span>Accesorios y joyería</li>
             <li><span>👗</span>Ropa y carteras</li>
             <li><span>🎧</span>Tecnología</li>
-            <li><span>✉️</span>Lluvia de sobres</li>
           </ul>
           <p class="script wishlist__sign">xoxo, Mia</p>
 
-          <!-- sticker con gorrito de fiesta pegado en la esquina de la hoja -->
-          <img class="sticker" src="sticker-fiesta.webp" alt="" aria-hidden="true" width="538" height="752" />
+          <!-- sticker pegado en la esquina de la hoja -->
+          <img class="sticker" src="sticker-jefe.webp" alt="" aria-hidden="true" width="308" height="640" />
         </div>
+
+        <!-- pop up con el QR de Yape -->
+        <dialog class="yape-modal" id="yape-modal" aria-label="QR de Yape para la lluvia de sobres">
+          <button class="yape-modal__close" id="yape-close" type="button" aria-label="Cerrar">×</button>
+          <img class="yape-modal__qr" src="yape-qr.png" alt="Código QR de Yape a nombre de Zelmira Luz Trinidad Santiago" width="760" height="968" loading="lazy" />
+          <div class="yape-modal__actions">
+            <a class="yape-modal__save" href="yape-qr.png" download="yape-xv-mia.png">Descargar QR</a>
+            <p>Desde el celular: guarda el QR y en Yape toca <b>Escanear QR</b> → <b>Subir imagen</b>.</p>
+          </div>
+        </dialog>
       </section>
 
       <!-- CONFIRMAR ASISTENCIA -->
@@ -292,9 +306,11 @@
           <button class="button button--ghost" id="calendar-button" type="button">Agregar al calendario</button>
         </div>
       </section>
+
     </main>
 
     <footer>
+      <p class="footer__msg">¡Te esperamos para brillar juntos esta noche! 💗</p>
       <p class="script">Mia</p>
       <span>XV · 07 · 11 · 2026 · Pink Glam</span>
     </footer>

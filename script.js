@@ -6,11 +6,10 @@ const CONFIG = {
   mapQuery: "-12.0216873,-76.8926567", // punto exacto del local (de maps.app.goo.gl/EmhF3m6ALSTvFLYs5)
   // ← links de Spotify (canción, playlist o álbum); se muestra un reproductor por cada uno
   spotify: [
-    "https://open.spotify.com/track/3wUuC7hhfBKySCo53Q6AEE", // Noche – Vico y su Grupo Karicia
-    "https://open.spotify.com/track/02rlBkxJG7rFWog7NvQUh1", // La Novia – Los Shapis
-    "https://open.spotify.com/track/78glgp69AtvgslCt7W9cF5", // Enfermera / Siempre Te Amaré – Chacalón Jr
-    "https://open.spotify.com/track/2r7J0qRfNQJ2E7Aw7YNis1", // Ambulante Soy – Los Shapis
-    "https://open.spotify.com/track/2ndwh9yRCFK3CA5zhaJWXY", // Amor de Verano – Pintura Roja
+    "https://open.spotify.com/track/2KawmvuMvEZvoYLSblxNnm", // intro (end of the world) – Ariana Grande
+    "https://open.spotify.com/track/5RMJL10m2xmf3A85tIGw9O", // Young And Beautiful – Lana Del Rey
+    "https://open.spotify.com/track/43iIQbw5hx986dUEZbr3eN", // From The Start – Laufey
+    "https://open.spotify.com/track/4BnDAG8QyfWirLFdGuV99x", // REDRED – CORTIS
   ],
 };
 
@@ -45,6 +44,17 @@ const photo = document.querySelector("#foto-mia");
 const markEmpty = () => photo.closest(".camera").classList.add("camera--empty");
 photo.addEventListener("error", markEmpty);
 if (photo.complete && photo.naturalWidth === 0) markEmpty();
+
+// Pop up del QR de Yape (lluvia de sobres)
+const yapeModal = document.querySelector("#yape-modal");
+document.querySelector("#yape-open").addEventListener("click", () => yapeModal.showModal());
+document.querySelector("#yape-close").addEventListener("click", () => yapeModal.close());
+// cerrar al tocar fuera de la ventanita
+yapeModal.addEventListener("click", (event) => {
+  const box = yapeModal.getBoundingClientRect();
+  const inside = event.clientX >= box.left && event.clientX <= box.right && event.clientY >= box.top && event.clientY <= box.bottom;
+  if (!inside) yapeModal.close();
+});
 
 // Formulario de confirmación → WhatsApp
 document.querySelector("#rsvp-form").addEventListener("submit", (event) => {

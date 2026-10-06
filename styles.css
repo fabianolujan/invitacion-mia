@@ -115,19 +115,22 @@ h3 { margin: 0; color: var(--berry); font-family: "Playfair Display", Georgia, s
 .disco--side-l { --s: 120px; top: 10px; left: -40px; }
 .disco--side-r { --s: 130px; --spin: 12s; bottom: 10px; right: -45px; }
 /* bola que cuelga arriba al centro, con su hilo */
-.disco--top { --s: 30cqw; --spin: 12s; position: relative; margin: 14cqw auto 5cqw; }
-.disco--top::before { content: ""; position: absolute; bottom: 100%; left: 50%; width: 2px; height: 14cqw; background: linear-gradient(#d9d9e0, #9c9ca8); transform: translateX(-50%); }
+/* tres bolas iguales colgando arriba; la del centro cuelga más abajo */
+.opener__balls { display: flex; justify-content: center; align-items: flex-start; gap: 4cqw; margin-bottom: 4cqw; }
+.disco--top { --s: 24cqw; --hang: 12cqw; --spin: 12s; position: relative; flex: none; margin-top: var(--hang); }
+.disco--top:nth-child(2) { --hang: 22cqw; --spin: 14s; }
+.disco--top:nth-child(3) { --spin: 10s; }
+.disco--top::before { content: ""; position: absolute; bottom: 100%; left: 50%; width: 2px; height: var(--hang); background: linear-gradient(#d9d9e0, #9c9ca8); transform: translateX(-50%); }
 
 .opener__title { margin: 0; color: var(--berry); font-family: "Playfair Display", Georgia, serif; font-weight: 600; line-height: 1.05; text-transform: uppercase; }
 .opener__title span { display: block; font-size: 10.5cqw; letter-spacing: .04em; }
 .opener__title span + span { font-size: 12cqw; letter-spacing: .1em; }
 
-.opener__date { display: flex; align-items: center; justify-content: center; margin: 2cqw 0 2.5cqw; color: var(--berry); font-size: 4.6cqw; font-weight: 700; letter-spacing: .05em; line-height: 1; text-transform: uppercase; }
+.opener__date { display: flex; align-items: center; justify-content: center; margin: 2cqw 0 5cqw; color: var(--berry); font-size: 4.6cqw; font-weight: 700; letter-spacing: .05em; line-height: 1; text-transform: uppercase; }
 .opener__date > span { padding: 0 3.5cqw; }
 .opener__day { display: grid; justify-items: center; gap: .6cqw; border-inline: .5cqw solid var(--rose); }
 .opener__day small { color: var(--hot); font-size: max(.62rem, 2.8cqw); letter-spacing: .14em; }
 .opener__day b { color: var(--hot); font-family: "Playfair Display", Georgia, serif; font-size: 10cqw; }
-.opener__place { margin: 0 0 4.5cqw; color: var(--hot); font-size: max(.78rem, 3.4cqw); font-style: italic; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 
 .countdown { padding: 3cqw 2cqw 3.4cqw; background: rgba(255, 255, 255, .92); border: 1.5px solid var(--rose); border-radius: 5cqw; box-shadow: 0 12px 30px rgba(216, 27, 106, .14); }
 .countdown p { margin: 0 0 1cqw; color: var(--hot); font-size: max(.7rem, 2.8cqw); font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
@@ -248,6 +251,8 @@ h3 { margin: 0; color: var(--berry); font-family: "Playfair Display", Georgia, s
 .details__item--place { grid-column: 1 / -1; }
 .details strong { display: block; color: var(--berry); font-family: "Playfair Display", Georgia, serif; font-size: clamp(1.25rem, 5vw, 1.5rem); line-height: 1.2; white-space: nowrap; }
 .details span { display: block; margin-top: .25rem; color: var(--ink); font-size: .85rem; line-height: 1.45; }
+.dress-note { margin: 1.1rem 0 0; padding: .75rem 1rem; color: var(--berry); background: var(--blush); border: 1.5px dashed var(--rose); border-radius: 14px; font-size: .9rem; font-weight: 600; line-height: 1.4; }
+.dress-note b { color: var(--hot); }
 
 /* ---------- Música ---------- */
 .vinyl {
@@ -286,10 +291,22 @@ h3 { margin: 0; color: var(--berry); font-family: "Playfair Display", Georgia, s
 .gifts li { display: flex; align-items: center; gap: .9rem; padding: .8rem .2rem; color: var(--berry); border-bottom: 1.5px dashed var(--blush); font-size: .95rem; font-weight: 600; line-height: 1.3; }
 .gifts li:last-child { border-bottom: 0; }
 .gifts span { flex: none; width: 2rem; font-size: 1.4rem; text-align: center; }
+/* botón "Yape QR" junto a Lluvia de sobres: abre el pop up con el QR */
+.yape-btn { margin-left: auto; padding: .4rem .85rem; border: 0; border-radius: 999px; color: #fff; background: #742284; font: 700 .72rem "Montserrat", Arial, sans-serif; letter-spacing: .06em; white-space: nowrap; cursor: pointer; box-shadow: 0 6px 14px rgba(116, 34, 132, .28); transition: transform .2s ease; }
+.yape-btn:hover, .yape-btn:focus-visible { transform: translateY(-2px); }
+/* la imagen ya es la tarjeta morada de Yape: el pop up la muestra entera, con el mismo morado de fondo */
+.yape-modal { width: min(360px, calc(100% - 2rem)); max-height: calc(100svh - 2rem); padding: 0; overflow-y: auto; border: 0; border-radius: 24px; color: #fff; text-align: center; background: #790699; box-shadow: 0 25px 60px rgba(60, 10, 40, .4); }
+.yape-modal::backdrop { background: rgba(70, 10, 40, .55); }
+.yape-modal[open] { animation: appear .3s ease-out; }
+.yape-modal__qr { display: block; width: 100%; height: auto; }
+.yape-modal__actions { padding: 0 1.2rem 1.3rem; }
+.yape-modal__actions p { margin: .7rem 0 0; font-size: .74rem; line-height: 1.45; opacity: .9; }
+.yape-modal__save { display: inline-block; padding: .7rem 1.4rem; border-radius: 999px; color: #fff; background: #10cbb4; font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+.yape-modal__close { position: absolute; top: .6rem; right: .6rem; display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border: 0; border-radius: 50%; color: #fff; background: rgba(255, 255, 255, .18); font-size: 1.6rem; line-height: 1; cursor: pointer; }
 .wishlist__sign { margin: 0; padding: 6.4rem 0 0; color: var(--hot); font-size: 2.2rem; line-height: 1; text-align: right; }
 
-/* sticker (ya trae el borde verde y el gorrito) */
-.sticker { position: absolute; left: -46px; bottom: -44px; width: 136px; height: auto; transform: rotate(-4deg); pointer-events: none; filter: drop-shadow(0 6px 10px rgba(80, 30, 50, .25)); }
+/* sticker recortado (figura alta: se mide por el ancho) */
+.sticker { position: absolute; left: -40px; bottom: -40px; width: 104px; height: auto; transform: rotate(-4deg); pointer-events: none; filter: drop-shadow(0 6px 10px rgba(80, 30, 50, .25)); }
 
 /* ---------- Confirmación ---------- */
 .rsvp { display: grid; gap: 1rem; max-width: 420px; margin: 0 auto; text-align: left; }
@@ -302,6 +319,7 @@ h3 { margin: 0; color: var(--berry); font-family: "Playfair Display", Georgia, s
 .rsvp .choice input { accent-color: var(--hot); width: 1.1rem; height: 1.1rem; }
 
 footer { padding: 2.4rem 1.25rem; color: #fff; text-align: center; background: var(--berry); }
+footer .footer__msg { margin: 0 auto .8rem; max-width: 320px; color: #ffe1ec; font-size: .95rem; font-style: italic; line-height: 1.5; }
 footer .script { margin: 0; font-size: 3rem; line-height: 1; }
 footer span { color: var(--rose); font-size: .7rem; letter-spacing: .3em; }
 
@@ -328,7 +346,7 @@ footer span { color: var(--rose); font-size: .7rem; letter-spacing: .3em; }
   .section--deco::before, .section--deco::after { height: 60%; }
   .section--deco::before { bottom: auto; -webkit-mask-image: radial-gradient(ellipse at top left, #000 50%, transparent 75%), var(--fade-y); mask-image: radial-gradient(ellipse at top left, #000 50%, transparent 75%), var(--fade-y); }
   .section--deco::after { top: auto; -webkit-mask-image: radial-gradient(ellipse at bottom right, #000 50%, transparent 75%), var(--fade-y); mask-image: radial-gradient(ellipse at bottom right, #000 50%, transparent 75%), var(--fade-y); }
-  .sticker { left: -10px; width: 118px; }
+  .sticker { left: -10px; width: 88px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

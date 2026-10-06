@@ -8,46 +8,126 @@
     <title>Los XV de Mia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- degradados y filtros compartidos por los globos del collage -->
+    <svg class="svg-defs" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="c-candy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffc6db" /><stop offset=".45" stop-color="#f390b4" /><stop offset="1" stop-color="#e9709d" /></linearGradient>
+        <linearGradient id="c-rose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe3ec" /><stop offset=".5" stop-color="#f6aec3" /><stop offset="1" stop-color="#e98aa6" /></linearGradient>
+        <linearGradient id="c-hot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9fcb" /><stop offset=".55" stop-color="#f0559a" /><stop offset="1" stop-color="#d63c80" /></linearGradient>
+        <linearGradient id="c-silver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" /><stop offset=".3" stop-color="#b3b3c0" /><stop offset=".55" stop-color="#f1f1f5" /><stop offset=".8" stop-color="#a2a2b0" /><stop offset="1" stop-color="#7f7f8e" /></linearGradient>
+        <!-- globo metalizado: relieve con luz desde arriba a la izquierda -->
+        <filter id="c-foil" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blur" />
+          <feDiffuseLighting in="blur" surfaceScale="5" diffuseConstant="1" lighting-color="#fff" result="diffuse"><feDistantLight azimuth="225" elevation="55" /></feDiffuseLighting>
+          <feComposite in="SourceGraphic" in2="diffuse" operator="arithmetic" k1="1.15" result="shaded" />
+          <feSpecularLighting in="blur" surfaceScale="5" specularConstant="1.2" specularExponent="26" lighting-color="#fff" result="spec"><feDistantLight azimuth="225" elevation="40" /></feSpecularLighting>
+          <feComposite in="spec" in2="SourceAlpha" operator="in" result="shine" />
+          <feComposite in="shaded" in2="shine" operator="arithmetic" k2="1" k3=".9" result="lit" />
+          <feComposite in="lit" in2="SourceAlpha" operator="in" />
+        </filter>
+        <filter id="c-foil-sm" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2.6" result="blur" />
+          <feDiffuseLighting in="blur" surfaceScale="4" diffuseConstant="1" lighting-color="#fff" result="diffuse"><feDistantLight azimuth="225" elevation="55" /></feDiffuseLighting>
+          <feComposite in="SourceGraphic" in2="diffuse" operator="arithmetic" k1="1.15" result="shaded" />
+          <feSpecularLighting in="blur" surfaceScale="4" specularConstant="1.1" specularExponent="22" lighting-color="#fff" result="spec"><feDistantLight azimuth="225" elevation="40" /></feSpecularLighting>
+          <feComposite in="spec" in2="SourceAlpha" operator="in" result="shine" />
+          <feComposite in="shaded" in2="shine" operator="arithmetic" k2="1" k3=".9" result="lit" />
+          <feComposite in="lit" in2="SourceAlpha" operator="in" />
+        </filter>
+        <!-- escarcha: puntitos claros y oscuros sobre la figura -->
+        <filter id="c-glitter" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="3" result="noise" />
+          <feColorMatrix in="noise" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  9 0 0 0 -5.4" result="light" />
+          <feColorMatrix in="noise" values="0 0 0 0 .45  0 0 0 0 0  0 0 0 0 .2  -9 0 0 0 3.6" result="dark" />
+          <feMerge result="merged"><feMergeNode in="SourceGraphic" /><feMergeNode in="dark" /><feMergeNode in="light" /></feMerge>
+          <feComposite in="merged" in2="SourceAlpha" operator="in" />
+        </filter>
+        <path id="c-heart" d="M50 88C20 66 2 48 2 28 2 13 14 2 28 2c10 0 18 6 22 14 4-8 12-14 22-14 14 0 26 11 26 26 0 20-18 38-48 60Z" />
+      </defs>
+    </svg>
     <main>
-      <!-- PORTADA -->
+      <!-- PORTADA: collage "Happy Birthday" con Mia de pequeña + tarjeta "Let's Party!" -->
       <section class="hero" aria-labelledby="titulo-principal">
-        <div class="disco disco--bl" aria-hidden="true"><img src="disco.png" alt="" /></div>
-        <div class="disco disco--br" aria-hidden="true"><img src="disco.png" alt="" /></div>
+        <div class="opener">
+          <div class="disco disco--top" aria-hidden="true"><img src="disco.png" alt="" /></div>
+          <h1 id="titulo-principal" class="opener__title reveal-now"><span>Mis Quince</span><span>Mia</span></h1>
 
-        <article class="invite reveal-now">
-          <!-- decoración estilo póster: bolas disco arriba y abajo, estrellas plateadas y estrellitas -->
-          <div class="invite__deco" aria-hidden="true">
-            <div class="glitter invite__sky"></div>
-            <div class="disco disco--t1"><img src="disco.png" alt="" /></div>
-            <div class="disco disco--t2"><img src="disco.png" alt="" /></div>
-            <div class="disco disco--t3"><img src="disco.png" alt="" /></div>
-            <div class="disco disco--t4"><img src="disco.png" alt="" /></div>
-            <i class="chrome-star" style="--x: 9%; --y: 90cqw; --s: 11cqw; --r: -14deg"></i>
-            <i class="chrome-star" style="--x: 96%; --y: 77cqw; --s: 10cqw; --r: 18deg"></i>
-            <i class="chrome-star" style="--x: 96%; --y: 111cqw; --s: 12cqw; --r: -8deg"></i>
-            <i class="chrome-star" style="--x: 8%; --y: 111cqw; --s: 7cqw; --r: 10deg"></i>
-            <i class="chrome-star" style="--x: 12%; --y: 72cqw; --s: 6cqw; --r: -20deg"></i>
-          </div>
+        <div class="collage reveal-now">
+          <!-- las medidas (--x, --y, --w) están en unidades del collage: 560 de ancho × 640 de alto -->
+          <svg class="c-item c-float" style="--x: 345; --y: 170; --w: 215; --delay: -1s" viewBox="0 0 220 220" aria-hidden="true">
+            <polygon points="110,22 137.6,74 195.6,84.2 154.7,126.5 162.9,184.8 110,159 57.1,184.8 65.3,126.5 24.4,84.2 82.4,74" transform="rotate(12 110 112)" fill="url(#c-silver)" stroke="url(#c-silver)" stroke-width="22" stroke-linejoin="round" filter="url(#c-foil)" />
+          </svg>
 
-          <p class="script invite__party">Let's Party!</p>
-          <h1 id="titulo-principal">
-            <span class="invite__name">Mia</span>
-            <span class="invite__xv" data-text="XV">XV</span>
-          </h1>
+          <svg class="c-item c-float" style="--x: 380; --y: 24; --w: 165; --delay: -2.5s" viewBox="0 0 170 150" aria-hidden="true">
+            <g transform="rotate(-10 85 80)" font-family="Fredoka, 'Baloo 2', 'Arial Rounded MT Bold', sans-serif" font-size="132" font-weight="700" text-anchor="middle" letter-spacing="-6">
+              <text x="85" y="124" fill="url(#c-candy)" stroke="url(#c-candy)" stroke-width="12" stroke-linejoin="round" paint-order="stroke" filter="url(#c-foil-sm)">15</text>
+              <text x="85" y="124" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.6">15</text>
+            </g>
+          </svg>
 
-          <p class="invite__date">
+          <img class="c-item c-photo" style="--x: 45; --y: 140; --w: 470" src="mia-nina.webp" alt="Mia de pequeña con gorrito de cumpleaños" width="310" height="228" />
+
+          <svg class="c-item c-hat" style="--x: 184; --y: 13; --w: 135" viewBox="0 0 120 160" aria-hidden="true">
+            <g transform="rotate(-10 60 146)">
+              <path d="M16 140 60 26l44 114q-44 14-88 0Z" fill="url(#c-hot)" filter="url(#c-glitter)" />
+              <g fill="#ffb3d1" stroke="#ff8fbd" stroke-width="1.2" filter="url(#c-glitter)">
+                <circle cx="10" cy="140" r="10" /><circle cx="24.3" cy="144.5" r="10" /><circle cx="38.6" cy="147.3" r="10" /><circle cx="52.9" cy="149" r="10" />
+                <circle cx="67.1" cy="149" r="10" /><circle cx="81.4" cy="147.3" r="10" /><circle cx="95.7" cy="144.5" r="10" /><circle cx="110" cy="140" r="10" />
+              </g>
+              <g fill="#ffd6e6" opacity=".9">
+                <circle cx="17" cy="137" r="7" /><circle cx="31.5" cy="141" r="7" /><circle cx="45.8" cy="143" r="7" /><circle cx="60" cy="144" r="7" />
+                <circle cx="74.2" cy="143" r="7" /><circle cx="88.5" cy="141" r="7" /><circle cx="103" cy="137" r="7" />
+              </g>
+              <polygon points="60,3 64.4,13.9 76.2,14.7 67.1,22.3 70,33.8 60,27.5 50,33.8 52.9,22.3 43.8,14.7 55.6,13.9" fill="url(#c-silver)" stroke="url(#c-silver)" stroke-width="3" stroke-linejoin="round" filter="url(#c-glitter)" />
+            </g>
+          </svg>
+
+          <svg class="c-item c-float" style="--x: 0; --y: 120; --w: 205; --delay: -4s" viewBox="0 0 210 330" aria-hidden="true">
+            <g fill="none" stroke="#e9a3bb" stroke-width="1.6">
+              <path d="M95 101c-6 60 30 120 22 229" />
+              <path d="M160 162c-8 50-40 90-36 168" />
+              <path d="M78 188c10 40 50 80 38 142" />
+            </g>
+            <use href="#c-heart" transform="translate(49 19.7) scale(.92)" fill="url(#c-rose)" filter="url(#c-foil)" />
+            <use href="#c-heart" transform="translate(116 84.5) scale(.88)" fill="url(#c-rose)" filter="url(#c-foil)" />
+            <use href="#c-heart" transform="translate(30 103.8) scale(.96)" fill="url(#c-rose)" filter="url(#c-foil)" />
+          </svg>
+
+          <svg class="c-item" style="--x: 88; --y: 363; --w: 84" viewBox="0 0 100 100" aria-hidden="true">
+            <polygon points="50,8 62.3,36 92.8,39.1 70,59.5 76.5,89.4 50,74 23.5,89.4 30,59.5 7.2,39.1 37.7,36" transform="rotate(-14 50 53)" fill="url(#c-hot)" stroke="url(#c-hot)" stroke-width="6" stroke-linejoin="round" filter="url(#c-glitter)" />
+          </svg>
+          <svg class="c-item" style="--x: 454; --y: 344; --w: 92" viewBox="0 0 100 100" aria-hidden="true">
+            <polygon points="50,8 62.3,36 92.8,39.1 70,59.5 76.5,89.4 50,74 23.5,89.4 30,59.5 7.2,39.1 37.7,36" transform="rotate(16 50 53)" fill="url(#c-hot)" stroke="url(#c-hot)" stroke-width="6" stroke-linejoin="round" filter="url(#c-glitter)" />
+          </svg>
+
+          <svg class="c-item" style="--x: 0; --y: 410; --w: 560" viewBox="0 0 560 240" aria-hidden="true">
+            <path id="c-arc-1" d="M118 92Q280 122 442 64" fill="none" />
+            <path id="c-arc-2" d="M66 165Q280 248 494 158" fill="none" />
+            <g font-family="Fredoka, 'Baloo 2', 'Arial Rounded MT Bold', sans-serif" font-weight="700" letter-spacing="-2">
+              <g fill="url(#c-candy)" stroke="url(#c-candy)" stroke-width="10" stroke-linejoin="round" paint-order="stroke" filter="url(#c-foil-sm)">
+                <text font-size="80"><textPath href="#c-arc-1" startOffset="50%" text-anchor="middle">HAPPY</textPath></text>
+                <text font-size="76"><textPath href="#c-arc-2" startOffset="50%" text-anchor="middle">BIRTHDAY</textPath></text>
+              </g>
+              <g fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.4">
+                <text font-size="80"><textPath href="#c-arc-1" startOffset="50%" text-anchor="middle">HAPPY</textPath></text>
+                <text font-size="76"><textPath href="#c-arc-2" startOffset="50%" text-anchor="middle">BIRTHDAY</textPath></text>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+          <p class="opener__date reveal-now">
             <span>Sáb.</span>
-            <span class="invite__day"><small>Nov</small><b>07</b></span>
+            <span class="opener__day"><small>Nov</small><b>07</b></span>
             <span>07:00 PM</span>
           </p>
+          <p class="opener__place reveal-now" data-venue>Salón de recepción</p>
 
-          <p class="invite__place" data-venue>Salón de recepción</p>
-
-          <div class="countdown" aria-live="polite">
+          <div class="countdown reveal-now" aria-live="polite">
             <p>Faltan solo</p>
             <div class="timer">
               <div><b id="days">00</b><span>días</span></div>
@@ -59,7 +139,7 @@
               <div><b id="seconds">00</b><span>seg</span></div>
             </div>
           </div>
-        </article>
+        </div>
       </section>
 
       <!-- FOTO DE MIA EN LA CÁMARA -->
@@ -158,12 +238,10 @@
       </section>
 
       <!-- WISHLIST -->
-      <section id="regalos" class="section">
-        <div class="disco disco--side-l" aria-hidden="true"><img src="disco.png" alt="" /></div>
-        <div class="card reveal" aria-labelledby="wishlist-title">
-          <p class="eyebrow">Wishlist</p>
-          <h2 id="wishlist-title">Ideas de regalo</h2>
-          <div class="divider" aria-hidden="true"><span>★</span><span>🎀</span><span>★</span></div>
+      <section id="regalos" class="section" aria-labelledby="wishlist-title">
+        <h2 id="wishlist-title" class="script wishlist__title reveal">WishList</h2>
+        <div class="wishlist__sheet reveal">
+          <p class="eyebrow">Ideas de regalo</p>
           <ul class="gifts">
             <li><span>🌸</span>Perfumes y body mists</li>
             <li><span>💄</span>Maquillaje y skincare</li>
@@ -172,6 +250,10 @@
             <li><span>🎧</span>Tecnología</li>
             <li><span>✉️</span>Lluvia de sobres</li>
           </ul>
+          <p class="script wishlist__sign">xoxo, Mia</p>
+
+          <!-- sticker con gorrito de fiesta pegado en la esquina de la hoja -->
+          <img class="sticker" src="sticker-fiesta.webp" alt="" aria-hidden="true" width="538" height="752" />
         </div>
       </section>
 

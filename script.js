@@ -4,7 +4,14 @@ const CONFIG = {
   venue: "Sueño Dorado",
   address: "Asociación Niño Jesús, 2.ª Etapa\nMz. A, Lt. 23 · Ref. Av. San Martín", // \n = salto de línea
   mapQuery: "-12.0216873,-76.8926567", // punto exacto del local (de maps.app.goo.gl/EmhF3m6ALSTvFLYs5)
-  spotify: "https://open.spotify.com/track/3wUuC7hhfBKySCo53Q6AEE", // Noche – Vico y su Grupo Karicia ← pega aquí el link de Spotify (canción, playlist o álbum)
+  // ← links de Spotify (canción, playlist o álbum); se muestra un reproductor por cada uno
+  spotify: [
+    "https://open.spotify.com/track/3wUuC7hhfBKySCo53Q6AEE", // Noche – Vico y su Grupo Karicia
+    "https://open.spotify.com/track/02rlBkxJG7rFWog7NvQUh1", // La Novia – Los Shapis
+    "https://open.spotify.com/track/78glgp69AtvgslCt7W9cF5", // Enfermera / Siempre Te Amaré – Chacalón Jr
+    "https://open.spotify.com/track/2r7J0qRfNQJ2E7Aw7YNis1", // Ambulante Soy – Los Shapis
+    "https://open.spotify.com/track/2ndwh9yRCFK3CA5zhaJWXY", // Amor de Verano – Pintura Roja
+  ],
 };
 
 const waLink = (text) => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`;
@@ -17,18 +24,20 @@ document.querySelectorAll("[data-address]").forEach((el) => (el.textContent = ad
 document.querySelector("#map").src = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=17&output=embed`;
 document.querySelector("#maps-link").href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
 
-// Reproductor de Spotify
-const spotifyMatch = CONFIG.spotify.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|playlist|album)\/([A-Za-z0-9]+)/);
-if (spotifyMatch) {
-  const [, type, id] = spotifyMatch;
-  const player = document.createElement("iframe");
-  player.src = `https://open.spotify.com/embed/${type}/${id}?utm_source=generator&theme=0`;
-  player.height = type === "track" ? 152 : 352;
-  player.title = "Música de los XV de Mia en Spotify";
-  player.loading = "lazy";
-  player.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
-  document.querySelector("#player").replaceChildren(player);
-}
+// Reproductores de Spotify (uno por cada link)
+const players = CONFIG.spotify
+  .map((link) => link.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|playlist|album)\/([A-Za-z0-9]+)/))
+  .filter(Boolean)
+  .map(([, type, id]) => {
+    const player = document.createElement("iframe");
+    player.src = `https://open.spotify.com/embed/${type}/${id}?utm_source=generator&theme=0`;
+    player.height = type === "track" ? 152 : 352;
+    player.title = "Música de los XV de Mia en Spotify";
+    player.loading = "lazy";
+    player.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+    return player;
+  });
+if (players.length) document.querySelector("#player").replaceChildren(...players);
 document.querySelector("#song-request").href = waLink("¡Hola! 🎶 La canción que no puede faltar en los XV de Mia es: ");
 
 // Foto de Mia en la cámara: si no existe foto-mia.jpg se muestra el diseño de respaldo
@@ -77,18 +86,6 @@ sections.forEach((section) => {
   section.prepend(layer);
   section.classList.add("paused");
 });
-
-// Estrellitas blancas en la tarjeta "Let's Party!": la mayoría a los costados del texto
-const inviteSky = document.querySelector(".invite__sky");
-for (let i = 0; i < Math.round(40 * sparkleDensity); i++) {
-  const item = document.createElement("i");
-  const isStar = i % 3 !== 0;
-  const left = isStar ? (Math.random() < 0.5 ? Math.random() * 20 : 80 + Math.random() * 20) : Math.random() * 100;
-  const size = isStar ? 5 + Math.random() * 8 : 2 + Math.random() * 3;
-  item.className = isStar ? "star5" : "dot";
-  item.style.cssText = `left:${left}%;top:${20 + Math.random() * 62}%;width:${size}px;height:${size}px;color:#fff;--dur:${2 + Math.random() * 3}s;--delay:${-Math.random() * 5}s`;
-  inviteSky.append(item);
-}
 
 // Solo se animan las secciones que están en pantalla (o a punto de verse)
 const animationObserver = new IntersectionObserver(

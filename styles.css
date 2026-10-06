@@ -295,7 +295,7 @@ h3 { margin: 0; color: var(--berry); font-family: "Playfair Display", Georgia, s
 .yape-btn { margin-left: auto; padding: .4rem .85rem; border: 0; border-radius: 999px; color: #fff; background: #742284; font: 700 .72rem "Montserrat", Arial, sans-serif; letter-spacing: .06em; white-space: nowrap; cursor: pointer; box-shadow: 0 6px 14px rgba(116, 34, 132, .28); transition: transform .2s ease; }
 .yape-btn:hover, .yape-btn:focus-visible { transform: translateY(-2px); }
 /* la imagen ya es la tarjeta morada de Yape: el pop up la muestra entera, con el mismo morado de fondo */
-.yape-modal { width: min(360px, calc(100% - 2rem)); max-height: calc(100svh - 2rem); padding: 0; overflow-y: auto; border: 0; border-radius: 24px; color: #fff; text-align: center; background: #790699; box-shadow: 0 25px 60px rgba(60, 10, 40, .4); }
+.yape-modal { position: fixed; inset: 0; z-index: 20; margin: auto; width: min(360px, calc(100% - 2rem)); height: fit-content; max-height: calc(100svh - 2rem); padding: 0; overflow-y: auto; border: 0; border-radius: 24px; color: #fff; text-align: center; background: #790699; box-shadow: 0 25px 60px rgba(60, 10, 40, .4); }
 .yape-modal::backdrop { background: rgba(70, 10, 40, .55); }
 .yape-modal[open] { animation: appear .3s ease-out; }
 .yape-modal__qr { display: block; width: 100%; height: auto; }

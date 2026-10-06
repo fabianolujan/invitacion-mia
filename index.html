@@ -259,16 +259,6 @@
           <!-- sticker pegado en la esquina de la hoja -->
           <img class="sticker" src="sticker-jefe.webp" alt="" aria-hidden="true" width="308" height="640" />
         </div>
-
-        <!-- pop up con el QR de Yape -->
-        <dialog class="yape-modal" id="yape-modal" aria-label="QR de Yape para la lluvia de sobres">
-          <button class="yape-modal__close" id="yape-close" type="button" aria-label="Cerrar">×</button>
-          <img class="yape-modal__qr" src="yape-qr.png" alt="Código QR de Yape a nombre de Zelmira Luz Trinidad Santiago" width="760" height="968" loading="lazy" />
-          <div class="yape-modal__actions">
-            <a class="yape-modal__save" href="yape-qr.png" download="yape-xv-mia.png">Descargar QR</a>
-            <p>Desde el celular: guarda el QR y en Yape toca <b>Escanear QR</b> → <b>Subir imagen</b>.</p>
-          </div>
-        </dialog>
       </section>
 
       <!-- CONFIRMAR ASISTENCIA -->
@@ -314,6 +304,16 @@
       <p class="script">Mia</p>
       <span>XV · 07 · 11 · 2026 · Pink Glam</span>
     </footer>
+
+    <!-- pop up con el QR de Yape -->
+    <dialog class="yape-modal" id="yape-modal" aria-label="QR de Yape para la lluvia de sobres">
+      <button class="yape-modal__close" id="yape-close" type="button" aria-label="Cerrar">×</button>
+      <img class="yape-modal__qr" src="yape-qr.png" alt="Código QR de Yape a nombre de Zelmira Luz Trinidad Santiago" width="760" height="968" />
+      <div class="yape-modal__actions">
+        <a class="yape-modal__save" href="yape-qr.png" download="yape-xv-mia.png">Descargar QR</a>
+        <p>Desde el celular: guarda el QR y en Yape toca <b>Escanear QR</b> → <b>Subir imagen</b>.</p>
+      </div>
+    </dialog>
 
     <script src="script.js"></script>
   </body>

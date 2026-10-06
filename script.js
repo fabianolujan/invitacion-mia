@@ -8,8 +8,8 @@ const CONFIG = {
   spotify: [
     "https://open.spotify.com/track/2KawmvuMvEZvoYLSblxNnm", // intro (end of the world) – Ariana Grande
     "https://open.spotify.com/track/5RMJL10m2xmf3A85tIGw9O", // Young And Beautiful – Lana Del Rey
-    "https://open.spotify.com/track/43iIQbw5hx986dUEZbr3eN", // From The Start – Laufey
-    "https://open.spotify.com/track/4BnDAG8QyfWirLFdGuV99x", // REDRED – CORTIS
+    "https://open.spotify.com/track/6T17ZI0glfM2IGLdUwtnLK", // JoyRide – CORTIS
+    "https://open.spotify.com/track/6gkbtMtioHgtyGjrMel6ei", // drop dead – Olivia Rodrigo
   ],
 };
 
